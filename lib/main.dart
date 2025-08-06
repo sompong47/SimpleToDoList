@@ -23,8 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: const Color(0xFF6A4C93),
           secondary: const Color(0xFF8B5CF6), // Light Purple
-          surface: const Color(0xFFF8F7FF), // Very Light Purple
-          background: const Color(0xFFF8F7FF),
+          surface: const Color(0xFFF8F7FF),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF6A4C93),

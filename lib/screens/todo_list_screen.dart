@@ -47,9 +47,19 @@ class _TodoListScreenState extends State<TodoListScreen> {
           ),
           ElevatedButton(
             onPressed: () async {
+              // ปิด dialog ก่อน
+              Navigator.pop(context);
+              
+              // ล้างข้อมูลทั้งหมดใน SharedPreferences
               final prefs = await SharedPreferences.getInstance();
-              await prefs.remove('username');
-              Navigator.pushReplacementNamed(context, '/');
+              await prefs.clear();
+              
+              // นำทางกลับไปหน้า login และล้างประวัติการนำทางทั้งหมด
+              Navigator.pushNamedAndRemoveUntil(
+                context, 
+                '/', 
+                (route) => false,
+              );
             },
             child: const Text('Logout'),
           ),
