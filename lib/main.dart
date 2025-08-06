@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/forgot_password_screen.dart';
 import 'screens/todo_list_screen.dart';
 import 'screens/todo_detail_screen.dart';
 
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: const Color(0xFF6A4C93),
           secondary: const Color(0xFF8B5CF6), // Light Purple
-          surface: const Color(0xFFF8F7FF),
+          surface: const Color(0xFFF8F7FF), // Very Light Purple
+          background: const Color(0xFFF8F7FF),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF6A4C93),
@@ -85,6 +88,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+        '/forgot_password': (context) => const ForgotPasswordScreen(),
         '/todo': (context) => const TodoListScreen(),
         '/add_todo': (context) => const TodoDetailScreen(),
       },

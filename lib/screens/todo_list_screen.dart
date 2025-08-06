@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // เพิ่มบรรทัดนี้
 import '../models/todo_model.dart';
 import '../services/local_storage.dart';
+import '../services/auth_service.dart';
 import '../widgets/todo_item_widget.dart';
 
 class TodoListScreen extends StatefulWidget {
@@ -22,13 +23,14 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 
   Future<void> _loadUserAndTodos() async {
-    final prefs = await SharedPreferences.getInstance();
-    final user = prefs.getString('username') ?? '';
-    final list = await LocalStorageService.loadTodos(user);
-    setState(() {
-      username = user;
-      todos = list;
-    });
+    final currentUser = await AuthService.getCurrentUser();
+    if (currentUser != null) {
+      final list = await LocalStorageService.loadTodos(currentUser.username);
+      setState(() {
+        username = currentUser.username;
+        todos = list;
+      });
+    }
   }
 
   void _logout() async {
